@@ -95,6 +95,12 @@ public class UserInfoController {
      */
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity<JsonResult> addUser(@RequestBody UserInfo userInfo) {
+    	// postman测试,通过json方式传输数据.
+    	/*{
+    		"username":"user",
+    		"password":"da",
+    		"usertype":"2"
+    	}*/
     	try {
     		Integer num = this.userInfoService.save(userInfo);
 			if (num == 1) {
@@ -117,6 +123,7 @@ public class UserInfoController {
      */
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<JsonResult> updateUser(@PathVariable("id") Integer id, @RequestBody UserInfo userInfo) {
+		// 前后端分离,前端通过json的方式传输数据.
 		try {
 			userInfo.setId(id);
 			Integer num = this.userInfoService.updateSelective(userInfo);
